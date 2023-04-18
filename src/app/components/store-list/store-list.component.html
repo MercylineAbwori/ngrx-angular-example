@@ -1,0 +1,167 @@
+<div class="container-fluid">
+    <ng-template appPlaceholder></ng-template>
+    <div class="row">
+        <div *ngIf="isLoading" class="app-loading-box">
+            <div class="text-center">
+                <div class="spinner-border m-5" role="status" style="width: 3rem; height: 3rem;">
+                </div>
+            </div>
+        </div>
+        <div *ngIf="!isLoading && !weHaveError" class="col-12 mx-auto">
+            <div class="card index-list my-2">
+
+                <h2 class="card-header card-header-type1 text-center">{{viewTitle}}</h2>
+                <div class="card-body">
+
+                    <div class="row index-search-box d-flex justify-content-end align-items-end">
+                        <div class="col-md-6">
+                            <div class="search">
+                                <button (click)="fetchSearch()" type="button" class="btn btn-labeled btn-success search-btn-icon">
+                                        <span class="btn-label">
+                                            <i class="fa fa-search"></i>
+                                        </span>
+                                    
+                                </button>
+                                <input type="text" class="form-control" placeholder="Search" [(ngModel)]="urlFilter.searchTerm">
+                                <button (click)="fetchSearch(true)" type="button" class="btn btn-labeled btn-success search-close-btn">
+                                        <span class="btn-label">
+                                            <i class="fa fa-times"></i>
+                                        </span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div *ngIf="viewModelHolder.results.length">
+                        <div class="card-scroll" infiniteScroll [infiniteScrollDistance]="2" [infiniteScrollUpDistance]="1.5" [infiniteScrollThrottle]="50" (scrolled)="onLoadMore()">
+
+                            <ng-container *ngIf="isIncomeStateView">
+
+                                <div class="table-index-container table-responsive">
+                                    <table class="table">
+                                        <thead>
+                                            <tr class="index-table-titles1">
+                                                <th scope="col">
+                                                    <p>Name</p>
+                                                </th>
+                                                <th scope="col">
+                                                    <p>Employee name</p>
+                                                </th>
+                                                <th scope="col">
+                                                    <p>Shop rent</p>
+                                                </th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+    
+                                            <ng-container *ngFor="let result of viewModelHolder.results">
+    
+                                                <tr class="clickable-elem">
+                                                    <td class="index-table-col1" (click)="navigateToView(result.reg_no)">
+                                                        <p class="max-space">{{result.name}}</p>
+                                                    </td>
+                                                    <td class="index-table-col1" (click)="navigateToView(result.reg_no)">
+                                                        <p class="max-space">{{result.employee_name}}</p>
+                                                    </td>
+                                                    <td class="index-table-col1" (click)="navigateToView(result.reg_no)">
+                                                        <p class="amount-space">{{result.shop_rent}}</p>
+                                                    </td>
+    
+                                                </tr>
+                                            </ng-container>
+                                        </tbody>
+                                    </table>
+                                </div>
+
+
+                            </ng-container>
+
+                            <ng-container *ngIf="!isIncomeStateView">
+
+                                <div class="table-index-container table-responsive">
+                                    <table class="table">
+                                        <thead>
+                                            <tr class="index-table-titles1">
+                                                <th scope="col">
+                                                    <p>Name</p>
+                                                </th>
+
+                                                <ng-container *ngIf="user.canChangeStoreParameters">
+                                                    <th scope="col">
+                                                        <p>Enabled</p>
+                                                    </th>
+                                                    <th scope="col">
+                                                        <p>Has mpesa</p>
+                                                    </th>
+                                                    <th scope="col">
+                                                        <p>Min sale value</p>
+                                                    </th>
+                                                    <th scope="col">
+                                                        <p>Days to go back</p>
+                                                    </th>
+                                                </ng-container>
+                                                
+                                                <th scope="col">
+                                                    <p>Action</p>
+                                                </th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+    
+                                            <ng-container *ngFor="let result of viewModelHolder.results">
+    
+                                                <tr class="clickable-elem">
+                                                    <td class="index-table-col1" (click)="navigateToView(result.reg_no)">
+                                                        <p class="max-space">{{result.name}}</p>
+                                                    </td>
+
+                                                    <ng-container *ngIf="user.canChangeStoreParameters">
+                                                        <td class="index-table-col1" (click)="navigateToView(result.reg_no)">
+                                                            <p class="small-space"></p>
+                                                            <p *ngIf="result.enabled"><img src="assets/images/icon-yes.svg" style="width:20px;"></p>
+                                                            <p *ngIf="!result.enabled"><img src="assets/images/icon-no.svg" style="width:20px;"></p>
+                                                        </td>
+                                                        <td class="index-table-col1" (click)="navigateToView(result.reg_no)">
+                                                            <p class="small-space"></p>
+                                                            <p *ngIf="result.has_mpesa"><img src="assets/images/icon-yes.svg" style="width:20px;"></p>
+                                                            <p *ngIf="!result.has_mpesa"><img src="assets/images/icon-no.svg" style="width:20px;"></p>
+                                                        </td>
+                                                        <td class="index-table-col1" (click)="navigateToView(result.reg_no)">
+                                                            <p class="amount-space">{{result.min_sale_value}}</p>
+                                                        </td>
+                                                        <td class="index-table-col1 bold-thick" (click)="navigateToView(result.reg_no)">
+                                                            <p class="max-space">
+                                                                {{result.days_to_go_back}} days ({{result.store_back_date}})</p>
+                                                        </td>
+                                                    </ng-container>
+
+                                                    <td class="index-table-col1">
+                                                        <button id="submit-button" class="btn btn-lg btn-primary btn-block amount-space index-table-btn" (click)="sendFullList(result.name, result.reg_no)">Send full list</button>
+                                                    </td>
+    
+                                                </tr>
+                                            </ng-container>
+                                        </tbody>
+                                    </table>
+                                </div>
+
+                            </ng-container>
+   
+                            
+                        </div>
+                    </div>
+                    <div *ngIf="isPaginationLoading" class="pagination-spinner">
+                        <div class="lds-dual-ring"></div>
+                    </div>
+
+                    <div *ngIf="!viewModelHolder.results.length" class="row index-row">
+                        <div class="col-12 index-col not-found text-center">
+                            <p>No Stores found.</p>
+                            <br>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,23 @@
+<ng-template #modalElem let-modal>
+    <div class="modal-header">
+        <h4 class="modal-title">{{title}}</h4>
+        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div> 
+    <div class="modal-body1">
+        <p>{{message}}</p>
+    </div>
+    <div class="modal-footer">
+        <button 
+            type="button" 
+            class="btn btn-secondary" 
+            data-bs-dismiss="modal"
+            (click)="onClose()"
+            >No</button>
+        <button 
+            type="button" 
+            class="btn btn-primary"
+            (click)="deleteConfirmed()">Yes</button>
+    </div>
+</ng-template>

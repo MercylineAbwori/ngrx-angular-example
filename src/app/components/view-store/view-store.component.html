@@ -1,0 +1,134 @@
+<div class="container">
+    <ng-template appPlaceholder></ng-template>
+    <div class="card" >
+
+        <h2 class="head py-2">View Store</h2>
+         <!-- The content inside the modal box -->
+          
+    <div class="row">
+        <div class="column">
+            <div class="column">
+                <label class="form-check-label" for="flexCheckDefault" style="padding-left: 20px;">
+                    Enable
+                </label>
+            </div>
+            <div class="column">
+                <input mdbCheckbox class="form-check-input" type="checkbox" value="" id="flexCheckDefault" [checked]="enableddata"/>
+            </div>
+        </div>
+        <div class="column">
+            
+            <div class="column">
+                <label class="form-check-label" for="flexCheckDefault" style="padding-left: 20px;">
+                    Has Mpesa
+                </label>
+            </div>
+            <div class="column">
+                <input mdbCheckbox class="form-check-input" type="checkbox" value="" id="flexCheckDefault" [checked]="has_mpesadata"/>
+
+            </div>
+            
+            
+        </div>
+    </div>
+
+    <div class="row">   
+        <div class="column">
+            <div class="column">
+                <label for="msv"><b>Min Sale Value</b></label>
+            </div>
+            <div class="column">
+                <div class="data">{{min_sale_value}}</div>
+            </div>
+            
+        </div>
+        <div class="column">
+            <div class="column">
+                <label for="dtgb"><b>Days to go back</b></label>
+            </div>
+            <div class="column">
+                <div class="data">{{days_to_go_back}}</div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="column">
+            <div class="column">
+                <label for="dtgb"><b>Franchisee Fee</b></label>
+            </div>
+            <div class="column">
+                <div class="data">{{franchisee_fee}}</div>
+            </div>
+            
+        </div>
+        <div class="column">
+            <div class="column">
+                <label for="dtgb"><b>Mwingi Costs</b></label>
+            </div>
+            <div class="column">
+                <div class="data">{{mwingi_costs}}</div>
+            </div>
+            
+        </div>
+    </div>
+    <div class="row">
+        
+        <div class="column">
+            <div class="column">
+                <label for="dtgb"><b>Shop Rent</b></label>
+            </div>
+            <div class="column">
+                <div class="data">{{shop_rent}}</div>
+            </div>
+            
+        </div>
+        <div class="column">
+            <div class="column">
+                <label for="dtgb"><b>Name</b></label>
+            </div>
+            <div class="column">
+                <div class="data">{{name}}</div>
+            </div>
+            
+        </div>
+    </div><br>
+    <div class="row">
+        <div class="column">
+            <div class="column">
+                <label for="dtgb"><b>Reg No</b></label>
+            </div>
+            <div class="column">
+                <div class="data">{{reg_no}}</div>
+            </div>
+            
+        </div>
+        <div class="column">
+            <div class="column">
+                <label for="dtgb"><b>Employee Name</b></label>
+            </div>
+            <div class="column">
+                <div class="data">{{employee_name}}</div>
+            </div>
+            
+        </div>
+    </div><br>
+    <div class="row">
+        
+        <div class="column">
+            <div class="column">
+                <label for="dtgb"><b>Store Back Date</b></label>
+            </div>
+            <div class="column">
+                <div class="data">{{store_back_date}}</div>
+            </div>
+            
+        </div>
+        
+    </div><br>
+
+    <button type="button" class="btn" style="background-color:#FF4500;color: #fff;">Submit</button>
+    </div>
+    
+   
+
+</div>
